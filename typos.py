@@ -18,12 +18,7 @@ resultsPath = '/Users/u1531715/Desktop/' #Path where you want the results.csv fi
 def getData(altruList, domainsList):
   # opening the .csv file containing all of the exported emails
   with open(altruList, newline='') as csvfile:
-      rawData = list(csv.reader(csvfile))
-
-  # trimming the data. Only want to look at the name, lookup ID, and email address 
-  data = []
-  for i in range(len(rawData)):
-    data.append(rawData[i][:3])
+      data = list(csv.reader(csvfile))
 
   # open an excel file with a list of common domains and put it in a list
   df = pd.read_excel(domainsList)
@@ -65,17 +60,17 @@ def nameCorrection(bouncedEmails):
     if first in username and last in username: # no obvious typo if the first and last name are spelled correctly in the username
        continue
     elif (first in email) and (similarity(username.replace(first,''), last) > 0.7): # possible typo if the first name is in the email and the last name is very similar to the remaining username 
-       bouncedEmails[j][3] = "possible name typo"
-       bouncedEmails[j][4] = "fix typo"
+       bouncedEmails[j][9] = "possible name typo"
+       bouncedEmails[j][10] = "fix typo"
     elif (last in email) and (similarity(username.replace(last,''), first) > 0.7): # possible typo if the last name is in the email and the first name is very similar to the remaining username 
-       bouncedEmails[j][3] = "possible name typo"
-       bouncedEmails[j][4] = "fix typo"
+       bouncedEmails[j][9] = "possible name typo"
+       bouncedEmails[j][10] = "fix typo"
     else:
        continue
    
 # function to create the nice looking table 
 def createTable(list):
-  headers = ["Name", "Lookup ID", "Given Email", "Suspected Issue", "Suggested Fix"]
+  headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
 
   # Generate the table in fancy format.
@@ -88,8 +83,6 @@ def createTable(list):
 
   return table 
    
-
-
 def main():
   a = folderpath + altruList
   b = folderpath + commonDomains
