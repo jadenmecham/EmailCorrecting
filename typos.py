@@ -6,9 +6,11 @@ import numpy as np
 from tabulate import tabulate
 
 # -----------------------------------------------------------------------------------------------------------------
-# ONLY CHANGE THESE 2 THINGS!
-altruList = 'fake emails.csv' # Path to the .csv file from altru
-commonDomains = '/Users/u1531715/Desktop/Email Correcting/Domains.xlsx' # Path to the list of common email domains
+# ONLY CHANGE THINGS IN THIS BOX!
+folderpath = '/Users/u1531715/Desktop/Email Correcting/' # Path to the folder containing the altru list and email domain list
+altruList = 'fake emails.csv' # name of the .csv file from altru
+commonDomains = 'Domains.xlsx'
+resultsPath = '/Users/u1531715/Desktop/' #Path where you want the results.csv file to go
 # DO NOT EDIT ANYTHING UNDER THIS LINE
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -79,15 +81,19 @@ def createTable(list):
   # Generate the table in fancy format.
   table = tabulate(m, headers, tablefmt="fancy_grid")
 
-  with open('results.csv', 'w') as f:
+  with open(resultsPath + 'results.csv', 'w') as f:
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
-   
+
   return table 
+   
+
 
 def main():
-  people, emailDomains = getData(altruList, commonDomains) 
+  a = folderpath + altruList
+  b = folderpath + commonDomains
+  people, emailDomains = getData(a, b) 
   domainCorrection(people, emailDomains)
   nameCorrection(people)
   table = createTable(people)
