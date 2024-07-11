@@ -9,7 +9,7 @@ from tabulate import tabulate
 # ONLY CHANGE THINGS IN THIS BOX!
 folderpath = '/Users/u1531715/Desktop/Email Correcting/' # Path to the folder containing the altru list and email domain list
 altruList = 'fake emails.csv' # name of the .csv file from altru
-commonDomains = 'Domains.xlsx'
+commonDomains = 'Domains.xlsx' # name of the domains list file 
 resultsPath = '/Users/u1531715/Desktop/' #Path where you want the results.csv file to go
 # DO NOT EDIT ANYTHING UNDER THIS LINE
 #-------------------------------------------------------------------------------------------------------------------
