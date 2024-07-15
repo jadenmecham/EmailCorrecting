@@ -10,7 +10,7 @@ from pathlib import Path
 
 # -----------------------------------------------------------------------------------------------------------------
 # ONLY CHANGE THINGS IN THIS BOX!
-folderpath = str(Path.cwd()) # Path to the folder containing the altru list and email domain list
+folderpath = '/Users/u1531715/Documents/GitHub/EmailCorrecting' # Path to the folder containing the altru list and email domain list
 altruList = "/fake emails.csv" # name of the .csv file from altru
 commonDomains = "/Domains.xlsx" # name of the domains list file 
 resultsPath = input("please enter the path where you would like the results sheet to go: ") #Path where you want the results.csv file to go
@@ -18,9 +18,9 @@ resultsPath = input("please enter the path where you would like the results shee
 #-------------------------------------------------------------------------------------------------------------------
 
 # Function to read all the data needed for later (bounced emails, common email domains)
-def getData(altruList, domainsList):
+def getData(altru, domainsList):
   # opening the .csv file containing all of the exported emails
-  with open(altruList, newline='') as csvfile:
+  with open(altru, newline='') as csvfile:
       data = list(csv.reader(csvfile))
 
   # open an excel file with a list of common domains and put it in a list
