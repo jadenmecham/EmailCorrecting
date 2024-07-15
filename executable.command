@@ -10,7 +10,7 @@ from pathlib import Path
 
 # -----------------------------------------------------------------------------------------------------------------
 # ONLY CHANGE THINGS IN THIS BOX!
-folderpath = Path.cwd() + "/" # Path to the folder containing the altru list and email domain list
+folderpath = str(Path.cwd()) + "/" # Path to the folder containing the altru list and email domain list
 altruList = "fake emails.csv" # name of the .csv file from altru
 commonDomains = "Domains.xlsx" # name of the domains list file 
 resultsPath = input("please enter the path where you would like the results sheet to go: ") #Path where you want the results.csv file to go
