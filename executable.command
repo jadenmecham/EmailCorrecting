@@ -83,11 +83,15 @@ def createTable(list, resultsPath):
   return table 
    
 def main():
+  print("Please select a .csv file from altru.")
+  input("Press [enter] to continue...")
   altruList = filedialog.askopenfilename() # name of the .csv file from altru
+  print("Please select a .xlsx file with common email domains.")
+  input("Press [enter] to continue...")
   commonDomains = filedialog.askopenfilename() # name of the domains list file 
+  print("Please select where you would like the results spreadsheet to go.")
+  input("Press [enter] to continue...")
   resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
-  
-  
   people, emailDomains = getData(altruList, commonDomains) 
   domainCorrection(people, emailDomains)
   nameCorrection(people)
