@@ -1,23 +1,22 @@
+#!/usr/bin/env python3
+
 import csv
 import pandas as pd
 import pymailcheck as pymc
 from difflib import SequenceMatcher
 import numpy as np
 from tabulate import tabulate
+import pathlib
+import tkinter as tk
+from tkinter import filedialog
 
-# -----------------------------------------------------------------------------------------------------------------
-# ONLY CHANGE THINGS IN THIS BOX!
-folderpath = '/Users/u1531715/Desktop/Email Correcting/' # Path to the folder containing the altru list and email domain list
-altruList = 'fake emails.csv' # name of the .csv file from altru
-commonDomains = 'Domains.xlsx' # name of the domains list file 
-resultsPath = '/Users/u1531715/Desktop/' #Path where you want the results.csv file to go
-# DO NOT EDIT ANYTHING UNDER THIS LINE
-#-------------------------------------------------------------------------------------------------------------------
+root = tk.Tk()
+root.withdraw()
 
 # Function to read all the data needed for later (bounced emails, common email domains)
-def getData(altruList, domainsList):
+def getData(altru, domainsList):
   # opening the .csv file containing all of the exported emails
-  with open(altruList, newline='') as csvfile:
+  with open(altru, newline='') as csvfile:
       data = list(csv.reader(csvfile))
 
   # open an excel file with a list of common domains and put it in a list
@@ -70,13 +69,17 @@ def nameCorrection(bouncedEmails):
    
 # function to create the nice looking table 
 def createTable(list):
+  resultsName = input("Please input a name for the results spreadsheet, then press [enter]: ")
+  print("Please select where you would like the results spreadsheet to go.")
+  input("Press [enter] to select a location...")
+  resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
   headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
 
   # Generate the table in fancy format.
   table = tabulate(m, headers, tablefmt="fancy_grid")
 
-  with open(resultsPath + 'results.csv', 'w') as f:
+  with open(resultsPath + '/' + resultsName + '.csv', 'w') as f:
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
@@ -84,12 +87,17 @@ def createTable(list):
   return table 
    
 def main():
-  a = folderpath + altruList
-  b = folderpath + commonDomains
-  people, emailDomains = getData(a, b) 
+  print("Please select a .csv file from altru.")
+  input("Press [enter] to select a file...")
+  altruList = filedialog.askopenfilename() # psth of the .csv file from altru
+  print("Please select a .xlsx file with common email domains.")
+  input("Press [enter] to select a file...")
+  commonDomains = filedialog.askopenfilename() # path of the domains list file 
+  people, emailDomains = getData(altruList, commonDomains) 
   domainCorrection(people, emailDomains)
   nameCorrection(people)
   table = createTable(people)
-  print(table)
+  #print(table)
 
 main()
+
