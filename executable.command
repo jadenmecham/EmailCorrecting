@@ -68,14 +68,18 @@ def nameCorrection(bouncedEmails):
        continue
    
 # function to create the nice looking table 
-def createTable(list, resultsPath):
+def createTable(list):
+  resultsName = input("Please input a name for the results spreadsheet, then press [enter]: ")
+  print("Please select where you would like the results spreadsheet to go.")
+  input("Press [enter] to select a file...")
+  resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
   headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
 
   # Generate the table in fancy format.
   table = tabulate(m, headers, tablefmt="fancy_grid")
 
-  with open(resultsPath + '/results.csv', 'w') as f:
+  with open(resultsPath + '/' + resultsName, 'w') as f:
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
@@ -96,7 +100,7 @@ def main():
   domainCorrection(people, emailDomains)
   nameCorrection(people)
   table = createTable(people, resultsPath)
-  print(table)
+  #print(table)
 
 main()
 
