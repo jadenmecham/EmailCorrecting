@@ -6,14 +6,14 @@ import pymailcheck as pymc
 from difflib import SequenceMatcher
 import numpy as np
 from tabulate import tabulate
-from pathlib import Path
+import pathlib
 
 # -----------------------------------------------------------------------------------------------------------------
 # ONLY CHANGE THINGS IN THIS BOX!
-folderpath = '/Users/u1531715/Documents/GitHub/EmailCorrecting' # Path to the folder containing the altru list and email domain list
+folderpath = str(pathlib.Path().resolve()) # Path to the folder containing the altru list and email domain list
 altruList = "/fake emails.csv" # name of the .csv file from altru
 commonDomains = "/Domains.xlsx" # name of the domains list file 
-resultsPath = input("please enter the path where you would like the results sheet to go: ") #Path where you want the results.csv file to go
+resultsPath = str(pathlib.Path().resolve()) + "/" #Path where you want the results.csv file to go
 # DO NOT EDIT ANYTHING UNDER THIS LINE
 #-------------------------------------------------------------------------------------------------------------------
 
