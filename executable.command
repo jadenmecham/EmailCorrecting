@@ -7,6 +7,11 @@ from difflib import SequenceMatcher
 import numpy as np
 from tabulate import tabulate
 import pathlib
+import tkinter as tk
+from tkinter import filedialog
+
+root = tk.Tk()
+root.withdraw()
 
 # Function to read all the data needed for later (bounced emails, common email domains)
 def getData(altru, domainsList):
@@ -70,7 +75,7 @@ def createTable(list, resultsPath):
   # Generate the table in fancy format.
   table = tabulate(m, headers, tablefmt="fancy_grid")
 
-  with open(resultsPath + 'results.csv', 'w') as f:
+  with open(resultsPath + '/results.csv', 'w') as f:
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
@@ -78,13 +83,12 @@ def createTable(list, resultsPath):
   return table 
    
 def main():
-  folderpath = str(pathlib.Path().resolve()) # Path to the folder containing the altru list and email domain list
-  altruList = "/fake emails.csv" # name of the .csv file from altru
-  commonDomains = "/Domains.xlsx" # name of the domains list file 
-  resultsPath = str(pathlib.Path().resolve()) + "/" #Path where you want the results.csv file to go
-  a = folderpath + altruList
-  b = folderpath + commonDomains
-  people, emailDomains = getData(a, b) 
+  altruList = filedialog.askopenfilename() # name of the .csv file from altru
+  commonDomains = filedialog.askopenfilename() # name of the domains list file 
+  resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
+  
+  
+  people, emailDomains = getData(altruList, commonDomains) 
   domainCorrection(people, emailDomains)
   nameCorrection(people)
   table = createTable(people, resultsPath)
