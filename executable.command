@@ -71,7 +71,7 @@ def nameCorrection(bouncedEmails):
 def createTable(list):
   resultsName = input("Please input a name for the results spreadsheet, then press [enter]: ")
   print("Please select where you would like the results spreadsheet to go.")
-  input("Press [enter] to select a file...")
+  input("Press [enter] to select a location...")
   resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
   headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
@@ -79,7 +79,7 @@ def createTable(list):
   # Generate the table in fancy format.
   table = tabulate(m, headers, tablefmt="fancy_grid")
 
-  with open(resultsPath + '/' + resultsName, 'w') as f:
+  with open(resultsPath + '/' + resultsName + '.csv', 'w') as f:
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
@@ -93,13 +93,10 @@ def main():
   print("Please select a .xlsx file with common email domains.")
   input("Press [enter] to select a file...")
   commonDomains = filedialog.askopenfilename() # path of the domains list file 
-  print("Please select where you would like the results spreadsheet to go.")
-  input("Press [enter] to select a file...")
-  resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
   people, emailDomains = getData(altruList, commonDomains) 
   domainCorrection(people, emailDomains)
   nameCorrection(people)
-  table = createTable(people, resultsPath)
+  table = createTable(people)
   #print(table)
 
 main()
