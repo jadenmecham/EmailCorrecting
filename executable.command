@@ -8,15 +8,6 @@ import numpy as np
 from tabulate import tabulate
 import pathlib
 
-# -----------------------------------------------------------------------------------------------------------------
-# ONLY CHANGE THINGS IN THIS BOX!
-folderpath = str(pathlib.Path().resolve()) # Path to the folder containing the altru list and email domain list
-altruList = "/fake emails.csv" # name of the .csv file from altru
-commonDomains = "/Domains.xlsx" # name of the domains list file 
-resultsPath = str(pathlib.Path().resolve()) + "/" #Path where you want the results.csv file to go
-# DO NOT EDIT ANYTHING UNDER THIS LINE
-#-------------------------------------------------------------------------------------------------------------------
-
 # Function to read all the data needed for later (bounced emails, common email domains)
 def getData(altru, domainsList):
   # opening the .csv file containing all of the exported emails
@@ -72,7 +63,7 @@ def nameCorrection(bouncedEmails):
        continue
    
 # function to create the nice looking table 
-def createTable(list):
+def createTable(list, resultsPath):
   headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
 
@@ -87,12 +78,16 @@ def createTable(list):
   return table 
    
 def main():
+  folderpath = str(pathlib.Path().resolve()) # Path to the folder containing the altru list and email domain list
+  altruList = "/fake emails.csv" # name of the .csv file from altru
+  commonDomains = "/Domains.xlsx" # name of the domains list file 
+  resultsPath = str(pathlib.Path().resolve()) + "/" #Path where you want the results.csv file to go
   a = folderpath + altruList
   b = folderpath + commonDomains
   people, emailDomains = getData(a, b) 
   domainCorrection(people, emailDomains)
   nameCorrection(people)
-  table = createTable(people)
+  table = createTable(people, resultsPath)
   print(table)
 
 main()
