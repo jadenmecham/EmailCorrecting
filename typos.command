@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 
+reqs = ['numpy', 'pymailcheck']
+
 import subprocess
 import sys
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", reqs[0]])
+subprocess.check_call([sys.executable, "-m", "pip", "install", reqs[1]])
+
 import csv
-import pandas as pd
 import pymailcheck as pymc
 from difflib import SequenceMatcher
 import numpy as np
-from tabulate import tabulate
 import tkinter as tk
 from tkinter import filedialog
 
@@ -18,10 +21,13 @@ root.withdraw()
 # list of common email domains
 emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com', 'umail.utah.edu']
 
-# Function to read all the data needed for later (bounced emails, common email domains)
-def getData(altru):
+# Function to read the altru data
+def getData():
+  print("Please select a .csv file from altru.")
+  input("Press [enter] to select a file...")
+  altruListPath = filedialog.askopenfilename() # path of the .csv file from altru
   # opening the .csv file containing all of the exported emails
-  with open(altru, newline='') as csvfile:
+  with open(altruListPath, newline='') as csvfile:
       data = list(csv.reader(csvfile))
   return data
 
@@ -68,7 +74,7 @@ def nameCorrection(bouncedEmails):
        continue
    
 # function to create the nice looking table 
-def createTable(list):
+def createCSV(list):
   resultsName = input("Please input a name for the results spreadsheet, then press [enter]: ")
   print("Please select where you would like the results spreadsheet to go.")
   input("Press [enter] to select a location...")
@@ -83,13 +89,10 @@ def createTable(list):
 
    
 def main():
-  print("Please select a .csv file from altru.")
-  input("Press [enter] to select a file...")
-  altruList = filedialog.askopenfilename() # psth of the .csv file from altru
-  people = getData(altruList)
-  domainCorrection(people, emailDomains)
-  nameCorrection(people)
-  createTable(people)
+  altruData = getData()
+  domainCorrection(altruData, emailDomains)
+  nameCorrection(altruData)
+  createCSV(altruData)
 
 
 main()
