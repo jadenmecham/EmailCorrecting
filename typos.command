@@ -86,14 +86,12 @@ def createCSV(list):
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
-
    
 def main():
   altruData = getData()
   domainCorrection(altruData, emailDomains)
   nameCorrection(altruData)
   createCSV(altruData)
-
 
 main()
 
