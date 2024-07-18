@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import csv
 import pandas as pd
 import pymailcheck as pymc
@@ -13,17 +11,15 @@ from tkinter import filedialog
 root = tk.Tk()
 root.withdraw()
 
+# list of common email domains
+emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com', 'umail.utah.edu']
+
 # Function to read all the data needed for later (bounced emails, common email domains)
-def getData(altru, domainsList):
+def getData(altru):
   # opening the .csv file containing all of the exported emails
   with open(altru, newline='') as csvfile:
       data = list(csv.reader(csvfile))
-
-  # open an excel file with a list of common domains and put it in a list
-  df = pd.read_excel(domainsList)
-  customDomains = df["Full Domains"].tolist()
-
-  return data, customDomains
+  return data
 
 # function to correct any typos in the domain of an email
 def domainCorrection(bouncedEmails, commonDomains):
@@ -76,28 +72,21 @@ def createTable(list):
   headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
 
-  # Generate the table in fancy format.
-  table = tabulate(m, headers, tablefmt="fancy_grid")
-
   with open(resultsPath + '/' + resultsName + '.csv', 'w') as f:
      write = csv.writer(f)
      write.writerow(headers)
      write.writerows(list[1:])
 
-  return table 
    
 def main():
   print("Please select a .csv file from altru.")
   input("Press [enter] to select a file...")
   altruList = filedialog.askopenfilename() # psth of the .csv file from altru
-  print("Please select a .xlsx file with common email domains.")
-  input("Press [enter] to select a file...")
-  commonDomains = filedialog.askopenfilename() # path of the domains list file 
-  people, emailDomains = getData(altruList, commonDomains) 
+  people = getData(altruList)
   domainCorrection(people, emailDomains)
   nameCorrection(people)
-  table = createTable(people)
-  #print(table)
+  createTable(people)
+
 
 main()
 
