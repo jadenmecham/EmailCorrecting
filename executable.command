@@ -2,6 +2,7 @@
 
 import subprocess
 import sys
+subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
 import csv
 import pandas as pd
 import pymailcheck as pymc
@@ -88,7 +89,6 @@ def createTable(list):
   return table 
    
 def main():
-  subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
   print("Please select a .csv file from altru.")
   input("Press [enter] to select a file...")
   altruList = filedialog.askopenfilename() # psth of the .csv file from altru
