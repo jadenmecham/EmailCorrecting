@@ -2,6 +2,7 @@
 
 reqs = ['numpy', 'pymailcheck']
 
+import os
 import subprocess
 import sys
 
@@ -23,8 +24,9 @@ emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com
 
 # Function to read the altru data
 def getData():
-  print("Please select a .csv file from altru.")
-  input("Press [enter] to select a file...")
+  print('')
+  input("press [enter] to select a .csv file from altru...")
+  print('')
   altruListPath = filedialog.askopenfilename() # path of the .csv file from altru
   # opening the .csv file containing all of the exported emails
   with open(altruListPath, newline='') as csvfile:
@@ -75,9 +77,11 @@ def nameCorrection(bouncedEmails):
    
 # function to create the nice looking table 
 def createCSV(list):
-  resultsName = input("Please input a name for the results spreadsheet, then press [enter]: ")
-  print("Please select where you would like the results spreadsheet to go.")
-  input("Press [enter] to select a location...")
+  print('')
+  resultsName = input("input a name for the results spreadsheet, then press [enter]: ")
+  print('')
+  input("press [enter] to select a location for the results spreadsheet to go...")
+  print('')
   resultsPath = filedialog.askdirectory() #Path where you want the results.csv file to go
   headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
   m = np.array(list[1:])
@@ -88,10 +92,20 @@ def createCSV(list):
      write.writerows(list[1:])
    
 def main():
+  os.system('clear')
+  print('red butte garden IT')
+  print('')
+  print('')
+  print('welcome to typos.command')
+  print('')
+  print('')
   altruData = getData()
   domainCorrection(altruData, emailDomains)
   nameCorrection(altruData)
   createCSV(altruData)
+  print('')
+  print('done!')
+  print('')
 
 main()
 
