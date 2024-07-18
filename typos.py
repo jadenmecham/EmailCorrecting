@@ -2,11 +2,9 @@ import subprocess
 import sys
 subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
 import csv
-import pandas as pd
 import pymailcheck as pymc
 from difflib import SequenceMatcher
 import numpy as np
-from tabulate import tabulate
 import tkinter as tk
 from tkinter import filedialog
 
@@ -65,7 +63,7 @@ def nameCorrection(bouncedEmails):
     else:
        continue
    
-# function to create the nice looking table 
+# function to create results csv file
 def createTable(list):
   resultsName = input("Please input a name for the results spreadsheet, then press [enter]: ")
   print("Please select where you would like the results spreadsheet to go.")
