@@ -8,7 +8,7 @@ from tkinter import filedialog
 # Function for opening the 
 # file explorer window
 def browseFiles():
-    filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File")
+    filename = filedialog.askopenfilename(initialdir = "/", filetypes=[("CSV files", "*.csv")],title = "Select a File")
     # add new text 
     label_file.configure(text="File Opened: "+filename)
       
@@ -21,7 +21,7 @@ window = Tk()
 window.title('Altru Email Corrector')
   
 # Set window size
-window.geometry("500x300")
+window.geometry("550x300")
   
 #Set window background color
 window.config(background = "white")
@@ -30,7 +30,7 @@ window.config(background = "white")
 label_file_explorer = Label(window, text = "Please select a .csv file from Altru:", width = 55, height = 4, fg = "black")
 button_explore = Button(window, text = "Browse Files", fg="blue", command = browseFiles) 
 
-label_file = Label(window, text = "", width = 55, height = 4, fg = "black")
+label_file = Label(window, text = "", width = 60, height = 4, fg = "black")
   
 # Grid method is chosen for placing
 # the widgets at respective positions 
