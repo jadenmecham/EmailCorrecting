@@ -10,36 +10,24 @@ root.title("test app")
 # Set geometry(widthxheight)
 root.geometry('350x200')
  
-# adding menu bar in root window
-# new item in menu bar labelled as 'New'
-# adding more items in the menu bar 
-menu = Menu(root)
-item = Menu(menu)
-item.add_command(label='New')
-menu.add_cascade(label='File', menu=item)
-root.config(menu=menu)
+# add top text
+topText = Label(root, text = "altru email corrector by rbgit")
+topText.grid()
+blankTxt = Label(root, text = "").grid(row=1)
+
+# add file select text
+fileText = Label(root, text = "select a .csv file from altru")
+fileText.grid(column = 0, row = 2)
  
-# adding a label to the root window
-lbl = Label(root, text = "red butte garden IT")
-lbl.grid()
- 
-# adding Entry Field
-txt = Entry(root, width=10)
-txt.grid(column =1, row =0)
- 
- 
-# function to display user text when
 # button is clicked
 def clicked():
- 
-    res = "You wrote" + txt.get()
-    lbl.configure(text = res)
+    pass
  
 # button widget with red color text inside
-btn = Button(root, text = "Click me" ,
+btn = Button(root, text = "click here" ,
              fg = "red", command=clicked)
 # Set Button Grid
-btn.grid(column=2, row=0)
+btn.grid(column=1, row=2)
  
 # Execute Tkinter
 root.mainloop()
