@@ -20,7 +20,7 @@ root = tk.Tk()
 root.withdraw()
 
 # list of common email domains
-emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com', 'umail.utah.edu']
+emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com', 'umail.utah.edu', 'me.com', 'mac.com', 'ymail.com', 'imail.org', 'math.utah.edu', 'va.gov', 'email.utcourts.gov', 'math.usu.edu', 'email.com']
 
 # Function to read the altru data
 def getData():
