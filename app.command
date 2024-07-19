@@ -18,7 +18,7 @@ from tkinter import *
 from tkinter import filedialog
 
 # list of common email domains
-emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com', 'umail.utah.edu']
+emailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'msn.com', 'outlook.com', 'umail.utah.edu', 'me.com', 'mac.com', 'ymail.com', 'imail.org', 'math.utah.edu', 'va.gov', 'email.utcourts.gov', 'math.usu.edu', 'email.com']
 
 class Correction:
   def __init__(self, altruPath, resultsName, resultsLocation):
