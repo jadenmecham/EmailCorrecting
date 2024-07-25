@@ -104,9 +104,14 @@ def saveFile():
    c.correct() 
    doneLabel = Label(window, text = "Done!")
    doneLabel.grid(column=0, row=9)
-   button_reset = Button(window, text = "Reset", fg="red", command = browseFiles)
-   button_reset.grid(column = 0, row = 10)
 
+def reset():
+   fileLabel = Label(window, text = "No selected file", width = 60, height = 4, fg = "black") 
+   fileLabel.grid(column = 0, row = 4)
+   resultsEntry = Entry(width=10)
+   resultsEntry.grid(column=0, row=6)
+   doneLabel = Label(window, text = "             ")
+   doneLabel.grid(column=0, row=9)
 
 c = Correction('-', '-', '-') # create instace of correction class 
 
@@ -134,9 +139,13 @@ resultsEntry.grid(column=0, row=6)
 buttonDownload = Button(window, text = "Download Results", fg="blue", command = saveFile)
 buttonDownload.grid(column=0, row=7)
 
-# done label
-doneLabel = Label(window, text = "")
-doneLabel.grid(column=0, row=8)
+# reset button
+button_reset = Button(window, text = "Reset", fg="red", command = reset)
+button_reset.grid(column = 0, row = 10)
+
+# space
+space = Label(window, text = " ")
+space.grid(column=0, row=8)
 
 
 window.mainloop()
