@@ -101,8 +101,10 @@ def saveFile():
    c.resultsLocation = resultsPath # update class
    resultsFileName = resultsEntry.get()
    c.resultsName = resultsFileName
-
    c.correct() 
+   doneLabel = Label(window, text = "Done!")
+   doneLabel.grid(column=0, row=9)
+
 
 c = Correction('-', '-', '-') # create instace of correction class 
 
@@ -127,8 +129,12 @@ resultsNameLabel = Label(window, text = "Name your results file:")
 resultsNameLabel.grid(column=0, row=5)
 resultsEntry = Entry(width=10)
 resultsEntry.grid(column=0, row=6)
-
 buttonDownload = Button(window, text = "Download Results", fg="blue", command = saveFile)
 buttonDownload.grid(column=0, row=7)
+
+# done label
+doneLabel = Label(window, text = "")
+doneLabel.grid(column=0, row=8)
+
 
 window.mainloop()
