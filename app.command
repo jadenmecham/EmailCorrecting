@@ -104,6 +104,8 @@ def saveFile():
    c.correct() 
    doneLabel = Label(window, text = "Done!")
    doneLabel.grid(column=0, row=9)
+   button_reset = Button(window, text = "Reset", fg="red", command = browseFiles)
+   button_reset.grid(column = 0, row = 10)
 
 
 c = Correction('-', '-', '-') # create instace of correction class 
