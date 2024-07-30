@@ -121,10 +121,10 @@ window.geometry("575x350") # Set window size
 window.config(background = "white") #Set window background color
 
 # Create a File Explorer label
-label_file_explorer = Label(window, text = "Please select a .csv file from Altru:", width = 62, height = 4, fg = "black")
+label_file_explorer = Label(window, text = "Please select a .csv file from Altru:", width = 62, height = 4, fg = "black". bg="white")
+label_file_explorer.grid(column = 0, row = 1)
 # Create browse files button
 button_explore = Button(window, text = "Browse Files", fg="blue", command = browseFiles)
-label_file_explorer.grid(column = 0, row = 1)
 button_explore.grid(column = 0, row = 2)
 
 # file select label
