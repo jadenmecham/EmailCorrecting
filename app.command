@@ -102,13 +102,13 @@ def saveFile():
    resultsFileName = resultsEntry.get()
    c.resultsName = resultsFileName
    c.correct() 
-   doneLabel = Label(window, text = "Done!", bg="white")
+   doneLabel = Label(window, text = "Done!", fg="black", bg="white")
    doneLabel.grid(column=0, row=9)
 
 def reset():
    fileLabel = Label(window, text = "No selected file", width = 60, height = 4, fg = "black", bg="white") 
    fileLabel.grid(column = 0, row = 4)
-   resultsEntry = Entry(width=10, bg="white")
+   resultsEntry = Entry(width=10, fg="black",bg="white")
    resultsEntry.grid(column=0, row=6)
    doneLabel = Label(window, text = "             ", bg="white")
    doneLabel.grid(column=0, row=9)
@@ -135,7 +135,7 @@ fileLabel.grid(column = 0, row = 4)
 # download labels 
 resultsNameLabel = Label(window, text = "Name your results file:", fg="black",bg="white")
 resultsNameLabel.grid(column=0, row=5)
-resultsEntry = Entry(width=10, bg="white")
+resultsEntry = Entry(width=10,fg="black", bg="white")
 resultsEntry.grid(column=0, row=6)
 buttonDownload = Button(window, text = "Download Results", fg="blue", command = saveFile, bg="white")
 buttonDownload.grid(column=0, row=7)
