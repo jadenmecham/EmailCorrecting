@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.8.6
+#!/usr/bin/env python3
 
 reqs = ['numpy', 'pymailcheck']
 
