@@ -92,7 +92,7 @@ class Correction:
 
 def browseFiles():
     filename = filedialog.askopenfilename(initialdir = "/", filetypes=[("CSV files", "*.csv")],title = "Select a File") # open file select window
-    fileLabel = Label(window, text = "Selected file: " + filename, width = 60, height = 4, fg = "black", bg="white") # print the selected file path
+    fileLabel = Label(window, text = "Selected file: " + filename, width = 60, height = 4, fg = "black", bg="light grey") # print the selected file path
     fileLabel.grid(column = 0, row = 4) # set the print location
     c.altruPath = filename # update class
     
@@ -102,15 +102,15 @@ def saveFile():
    resultsFileName = resultsEntry.get()
    c.resultsName = resultsFileName
    c.correct() 
-   doneLabel = Label(window, text = "Done!", bg="white")
+   doneLabel = Label(window, text = "Done!", bg="light grey")
    doneLabel.grid(column=0, row=9)
 
 def reset():
-   fileLabel = Label(window, text = "No selected file", width = 60, height = 4, fg = "black", bg="white") 
+   fileLabel = Label(window, text = "No selected file", width = 60, height = 4, fg = "black", bg="light grey") 
    fileLabel.grid(column = 0, row = 4)
-   resultsEntry = Entry(width=10, bg="white")
+   resultsEntry = Entry(width=10, bg="light grey")
    resultsEntry.grid(column=0, row=6)
-   doneLabel = Label(window, text = "             ", bg="white")
+   doneLabel = Label(window, text = "             ", bg="light grey")
    doneLabel.grid(column=0, row=9)
 
 c = Correction('-', '-', '-') # create instace of correction class 
@@ -118,33 +118,33 @@ c = Correction('-', '-', '-') # create instace of correction class
 window = Tk() # Create the root window
 window.title('Altru Email Corrector') # Set window title
 window.geometry("575x350") # Set window size
-window.config(background = "white") #Set window background color
+window.config(background = "light grey") #Set window background color
 
 # Create a File Explorer label
-label_file_explorer = Label(window, text = "Please select a .csv file from Altru:", width = 62, height = 4, fg = "black", bg="white")
+label_file_explorer = Label(window, text = "Please select a .csv file from Altru:", width = 62, height = 4, fg = "black", bg="light grey")
 label_file_explorer.grid(column = 0, row = 1)
 # Create browse files button
-button_explore = Button(window, text = "Browse Files", fg="blue", command = browseFiles, bg="white")
+button_explore = Button(window, text = "Browse Files", fg="blue", command = browseFiles, bg="light grey")
 button_explore.grid(column = 0, row = 2)
 
 # file select label
-fileLabel = Label(window, text = "No selected file", width = 60, height = 4, fg = "black", bg="white") 
+fileLabel = Label(window, text = "No selected file", width = 60, height = 4, fg = "black", bg="light grey") 
 fileLabel.grid(column = 0, row = 4)
 
 # download labels 
-resultsNameLabel = Label(window, text = "Name your results file:", bg="white")
+resultsNameLabel = Label(window, text = "Name your results file:", bg="light grey")
 resultsNameLabel.grid(column=0, row=5)
-resultsEntry = Entry(width=10, bg="white")
+resultsEntry = Entry(width=10, bg="light grey")
 resultsEntry.grid(column=0, row=6)
-buttonDownload = Button(window, text = "Download Results", fg="blue", command = saveFile, bg="white")
+buttonDownload = Button(window, text = "Download Results", fg="blue", command = saveFile, bg="light grey")
 buttonDownload.grid(column=0, row=7)
 
 # reset button
-button_reset = Button(window, text = "Reset", fg="red", command = reset, bg="white")
+button_reset = Button(window, text = "Reset", fg="red", command = reset, bg="light grey")
 button_reset.grid(column = 0, row = 10)
 
 # space
-space = Label(window, text = " ", bg="white")
+space = Label(window, text = " ", bg="light grey")
 space.grid(column=0, row=8)
 
 
