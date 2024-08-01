@@ -64,11 +64,11 @@ class Correction:
         if first in username and last in username: # no obvious typo if the first and last name are spelled correctly in the username
             continue
         elif (first in email) and (self.similarity(username.replace(first,''), last) > 0.7): # possible typo if the first name is in the email and the last name is very similar to the remaining username 
-            bouncedEmails[j][9] = "possible name typo"
-            bouncedEmails[j][10] = "fix typo"
+            bouncedEmails[j][-2] = "possible name typo"
+            bouncedEmails[j][-1] = "fix typo"
         elif (last in email) and (self.similarity(username.replace(last,''), first) > 0.7): # possible typo if the last name is in the email and the first name is very similar to the remaining username 
-            bouncedEmails[j][9] = "possible name typo"
-            bouncedEmails[j][10] = "fix typo"
+            bouncedEmails[j][-2] = "possible name typo"
+            bouncedEmails[j][-1] = "fix typo"
         else:
             continue
 
@@ -76,13 +76,10 @@ class Correction:
   def createCSV(self, list):
     resultsPath = self.resultsLocation
     resultsName = self.resultsName
-    headers = ["Name", "Lookup ID", "Given Email", "Primary Email?", "Bounced?", "Inactive?", "Email Date Changed", "System Record ID", "QUERYRECID", "Suspected Issue", "Suggested Fix"]
-    m = np.array(list[1:])
 
     with open(resultsPath + '/' + resultsName + '.csv', 'w') as f:
         write = csv.writer(f)
-        write.writerow(headers)
-        write.writerows(list[1:])
+        write.writerows(list)
 
   def correct(self):
     altruData = self.getData()
